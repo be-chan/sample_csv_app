@@ -17,6 +17,20 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def new
+    @category_article = CategoryArticle.new
+  end
+
+  def store
+    @category_article = CategoryArticle.new(category_article_params)
+    if @category_article.save
+      p @category_article
+      redirect_to categories_index_path
+    else
+      render categories_new_path
+    end
+  end
+
   private
 
   def category_params
@@ -26,5 +40,9 @@ class CategoriesController < ApplicationController
   def category_search
     # @categories = Category.where("name LIKE ?", "%#{params[:category_search]}%")
     @articles = Article.joins(:category).where(categories: {id: params[:category_search]})
+  end
+
+  def category_article_params
+    params.require(:category_article).permit(:name, :title, :body, :category_id)
   end
 end
