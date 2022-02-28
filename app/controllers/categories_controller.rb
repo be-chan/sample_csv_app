@@ -20,7 +20,8 @@ class CategoriesController < ApplicationController
   def new
     @category_article = CategoryArticle.new
   end
-
+  
+  # CategoriesテーブルとArticlesテーブルの複数テーブル登録(フォームオブジェクト)
   def store
     @category_article = CategoryArticle.new(category_article_params)
     if @category_article.save
@@ -29,6 +30,34 @@ class CategoriesController < ApplicationController
     else
       render categories_new_path
     end
+  end
+
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to categories_search_result_path
+    else
+      render categories_edit
+    end
+  end
+  
+  def search_result
+    if params[:search_name].present?
+      category_article = CategoryArticle.new
+      @categories = category_article.search(params[:search_name])
+    end
+    if params[:articles_title].present?
+      category_article = CategoryArticle.new
+      @articles_category = category_article.articles_category_search(params[:articles_title])
+    end
+  end
+
+  def select
+    @categories = Category.select(:name).distinct
   end
 
   private

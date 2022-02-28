@@ -4,9 +4,12 @@ Rails.application.routes.draw do
 
   get 'categories/index'
   post 'categories/create'
-  get 'categories/search'
   get 'categories/new'
   post 'categories/store'
+  get 'categories/:id/edit', to: 'categories#edit', as: 'categories_edit'
+  put 'categories/update/:id', to: 'categories#update', as: 'categories_update'
+  get 'categories/search_result'
+  get 'categories/select'
 
   get 'articles/index'
   post 'articles/create'

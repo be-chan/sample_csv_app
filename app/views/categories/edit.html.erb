@@ -1,0 +1,10 @@
+<h1>Category#edit</h1>
+
+<div>
+  <%= @category.name %>
+</div>
+
+<%= form_with model: @category, url: categories_update_path(@category.id) ,method: :put, local: true do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit '検索' %>
+<% end %>
