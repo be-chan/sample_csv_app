@@ -8,6 +8,10 @@ class CategoryArticle
     Article.create(title: title, body: body, category_id: category.id)
   end
 
+  def update_form(category_find_params)
+    
+  end
+
   def search(search_name)
     Category.where("name LIKE ?", "%#{search_name}%")
   end

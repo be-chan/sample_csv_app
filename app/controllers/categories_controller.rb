@@ -38,10 +38,20 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    if @category.update(category_params)
+    if @category.update!(category_params)
       redirect_to categories_search_result_path
     else
-      render categories_edit
+      render categories_edit_path
+    end
+  end
+
+  def update_form
+    @category = Category.find(params[:id])
+    @category_article = CategoryArticle.new(@category, category_article_params)
+    if @category_article.update_form(@category)
+      redirect_to categories_search_result_path
+    else
+      render categories_edit_path
     end
   end
   
@@ -73,5 +83,9 @@ class CategoriesController < ApplicationController
 
   def category_article_params
     params.require(:category_article).permit(:name, :title, :body, :category_id)
+  end
+
+  def category_article_update_params
+    params.permit(:name, :title, :body, :category_id)
   end
 end

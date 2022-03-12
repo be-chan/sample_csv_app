@@ -4,7 +4,19 @@
   <%= @category.name %>
 </div>
 
-<%= form_with model: @category, url: categories_update_path(@category.id) ,method: :put, local: true do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit '検索' %>
-<% end %>
+<div>
+  <%= form_with model: @category, url: categories_update_path(@category.id) ,method: :put, local: true do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit '更新' %>
+  <% end %>
+</div>
+
+<p class="mt-2">フォームオブジェクトで更新</p>
+<div>
+  <%= form_with model: @category_article, url: categories_update_form_path(@category.id), method: :put, local: true do |f| %>
+    <%= f.text_field :name %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body %>
+    <%= f.submit '更新'%>
+  <% end %>
+</div>
