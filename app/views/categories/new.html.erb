@@ -1,0 +1,12 @@
+<h1>new</h1>
+
+<%= form_with model: @category_article ,url: categories_store_path ,method: :post, local: true do |f|%>
+  <div class="form-group">
+    <%= f.text_field :name %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body %>
+    <%= f.submit '投稿' %>
+  </div>
+
+
+<% end %>

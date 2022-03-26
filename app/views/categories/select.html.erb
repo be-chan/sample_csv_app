@@ -1,0 +1,5 @@
+<h1>Category#Select</h1>
+<%= form_with model: @categories, url: categories_create_path, method: :post, local: true do |f| %>
+  <%= f.collection_select(:name, @categories, :id, :name) %>
+  <%= f.submit '登録' %>
+<% end %>

@@ -1,0 +1,38 @@
+<h1>SearchResult</h1>
+
+<%= form_with url: categories_search_result_path, method: :get, local: true do |f| %>
+  <p>ただのカテゴリーネームのあいまい検索</p>
+  <%= f.text_field :search_name %>
+  <%= f.submit '検索' %>
+<% end %>
+
+<div class="result">
+
+<% if @categories.present? %>
+  <ul>
+    <% @categories.each do |category| %>
+    <li>
+      <%= category.name %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+<%= form_with url: categories_search_result_path, method: :get, local: true do |f| %>
+  <p>Articleのタイトルから完全一致カテゴリー検索</p>
+  <%= f.text_field :articles_title %>
+  <%= f.submit '検索' %>
+<% end %>
+
+<div class="result">
+  <% if @articles_category.present? %>
+    <ul>
+      <% @articles_category.each do |category| %>
+      <li>
+        <%= category.name %>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

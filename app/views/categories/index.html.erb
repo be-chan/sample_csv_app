@@ -1,0 +1,35 @@
+<h1>category#index</h1>
+
+<%= form_with  url: categories_index_path ,method: :get, local: true do |f| %>
+<div class="form-group p-2">
+  <%= f.text_field :category_search , class: "form-control mb-2" ,placeholder: "アーティクルとカテゴリーのinnerjoin検索、category_idとcategory.idで結合"%>
+  <%= f.submit '検索' ,class: "btn btn-primary" %>
+</div>
+<% end %>
+
+<h1>Search Result</h1>
+<%# if @categories.present?%>
+  <%# @categories.each do |category| %>
+    <%#= category.name %>
+  <%# end %>
+<%# end %>
+<% if @articles.present? %>
+  <% @articles.each do |article| %>
+    <%= article.title %>
+  <% end%>
+<% end %>
+
+<div class="error-message">
+  <p class="error-message-text"></p>
+</div>
+
+<%= form_with model: @category, url: categories_create_path, method: :post, local: true do |f| %>
+<div class="form-group p-2">
+  <%= f.text_field :name, class: "form-control mb-2"%>
+  <%= f.submit "登録", class:"btn btn-primary" ,id: "btn_submit"%>
+</div>
+
+<div>
+  <%= link_to "アーティクル" , articles_index_path %>
+</div>
+<% end %>

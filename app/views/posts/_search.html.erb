@@ -1,0 +1,14 @@
+<h2 class="p-2">SearchResults</h2>
+
+<% if params[:search].present? || params[:date_search].present? %>
+  <ul style="list-style:none">
+    <% @posts.each do |post| %>
+      <% unless post.title == nil %>
+        <li>
+          <%= post.title %>
+          <%= post.contract %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
