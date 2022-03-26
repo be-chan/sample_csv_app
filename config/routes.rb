@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'categories/search_result'
   get 'categories/select'
 
-
   get 'articles/index'
   post 'articles/create'
   
@@ -23,5 +22,19 @@ Rails.application.routes.draw do
   post 'reserves/confirm' # 確認画面
   post 'reserves/back' # 確認画面から「入力画面に戻る」をクリックしたとき
   post 'reserves/complete' # 完了画面
+  
+  get 'reserves/:id/edit', to: 'reserves#edit' , as: 'reserves_edit'
+  post 'reserves/:id/edit_confirm', to: 'reserves#edit_confirm' , as: 'reserves_edit_confirm'
+  put 'reserves/update/:id', to: 'reserves#update' , as: 'reserves_update'
+  
+  resources 'blogs' do
+    collection do
+      post 'confirm'
+    end
+    member do
+      patch 'edit_confirm'
+    end
+  end
+
 
 end

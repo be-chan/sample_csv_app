@@ -1,3 +1,5 @@
+require 'csv'
+
 class CategoriesController < ApplicationController
   def index
     @category = Category.new

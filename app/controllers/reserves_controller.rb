@@ -21,6 +21,20 @@ class ReservesController < ApplicationController
     def complete
       Reserve.create!(@attr)
     end
+
+    def edit
+      @reserve = Reserve.find(params[:id])
+    end
+
+    def edit_confirm
+      @reserve = Reserve.find(params[:id])
+      
+    end
+
+    def update
+
+    end
+
   
     private
   
